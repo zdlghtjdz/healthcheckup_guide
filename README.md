@@ -5,6 +5,7 @@
 
 프로젝트 주제는 NUGU AI 스피커를 활용한 건강검진 가이드 앱 제작입니다.
 
+## 1. Nugu Play 앱 기능
 건강검진 가이드 앱은 3개의 기능을 가지고 있습니다.
 
 1. 건강검진에 대한 발화에 대한 처리(ex. 폐암 검진에 대해서 알려줘) - 구현중
@@ -18,14 +19,21 @@
 
 ---
 
+## 2. Nugu Play 앱 구조
+
 Nugu Play의 구조는 다음과 같습니다.
 
 ![그림3.png](https://github.com/zdlghtjdz/healthcheckup_guide/blob/main/%EA%B7%B8%EB%A6%BC3.PNG)
 
 ---
 
+## 3. API 서버 구현
+
 github를 통해 관리되는 소스코드는 Nugu Play에서 사용하기 위한 API 서버 및 DB 관련 코드입니다.
 웹서버는 아마존 AWS에서 Flask를 통해 동작합니다. 
 Nugu Play로 부터 정의된 요청(POST방식)이 오면, 그에 대한 응답을 json형태로 반환하게 됩니다.
 
+---
+
+## 4. 기타 
 해당 프로젝트에 대한 문의사항이나 궁금한 점이 있으시면 zdlghtjdz@naver.com으로 메일 보내주시면 감사하겠습니다.
