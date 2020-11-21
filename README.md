@@ -9,4 +9,4 @@
 
 Nugu Play의 구조는 다음과 같습니다.
 
-![image]()
+![image.png](https://github.com/zdlghtjdz/healthcheckup_guide/blob/main/image.png)
