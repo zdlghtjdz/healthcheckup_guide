@@ -12,16 +12,19 @@
 3. 건강검진에 대한 주의사항(ex. 건강검진에서 주의할 사항은 뭐야?) - 미구현
 
 각 기능에 대한 FLOW는 다음과 같은 형태입니다.
+
 ![그림1.png](https://github.com/zdlghtjdz/healthcheckup_guide/blob/main/그림1.png)
 ![그림2.png](https://github.com/zdlghtjdz/healthcheckup_guide/blob/main/그림2.png)
 
-
-github를 통해 관리되는 소스코드는 Nugu Play에서 사용하기 위한 API 서버 및 DB 관련 코드입니다.
+---
 
 Nugu Play의 구조는 다음과 같습니다.
 
 ![그림3.png](https://github.com/zdlghtjdz/healthcheckup_guide/blob/main/%EA%B7%B8%EB%A6%BC3.PNG)
 
+---
+
+github를 통해 관리되는 소스코드는 Nugu Play에서 사용하기 위한 API 서버 및 DB 관련 코드입니다.
 웹서버는 아마존 AWS에서 Flask를 통해 동작합니다. 
-Nugu Play로 부터 정의된 요청이 오면, 그에 대한 응답을 json형태로 반환하게 됩니다.
+Nugu Play로 부터 정의된 요청(POST방식)이 오면, 그에 대한 응답을 json형태로 반환하게 됩니다.
 
