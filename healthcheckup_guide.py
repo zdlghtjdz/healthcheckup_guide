@@ -1,3 +1,4 @@
+
 # -*-coding:utf-8-*-
 from flask import Flask, request, json
 from datetime import datetime
@@ -11,13 +12,15 @@ commonResponse = {
     'output': {}
 }
 
-def health_care_all(response, utteranceValue_year, utteranceValue_month, utteranceValue_day, utteranceValue_gender):
+def health_care_all(response, utteranceValue_year, utteranceValue_month, utteranceValue_day, utteranceValue_gender, str1, str2):
 
     from datetime import datetime
 
     now_year = datetime.today().year
     now_month = datetime.today().month
     now_day = datetime.today().day
+
+    bornYear = int(utteranceValue_year)
 
     makeYear = now_year - int(utteranceValue_year)
     makeMonth = now_month - int(utteranceValue_month)
@@ -76,26 +79,26 @@ def health_care_all(response, utteranceValue_year, utteranceValue_month, utteran
     a = ''
     count = 0
 
-    if makeYear % 2 == 0 and makeYear >= 20:
-        a += '일반건강검진, '
+    if bornYear % 2 == 0 and makeYear >= 20:
+        a += '일반 건강 검진, '
         count += 1
     if makeYear >= 40:
-        a += '위암검진, '
+        a += '위암 검진, '
         count += 1
     if makeYear >= 50:
         a += '대장암 검진, '
         count += 1
     if makeYear >= 40:
-        a += '간암검진, '
+        a += '간암 검진, '
         count += 1
     if makeYear >= 40 and utteranceValue_gender == '여자':
         a += '유방암 검진,'
         count += 1
     if makeYear >= 20 and utteranceValue_gender == '여자':
-        a += '자궁경부암, '
+        a += '자궁경부암 검진, '
         count += 1
     if 54 <= makeYear <= 74:
-        a += '폐암검진, '
+        a += '폐암 검진, '
         count += 1
     if 4 <= bornmonth <= 6:
         a += '1차 영유아 건강검진  '
@@ -125,8 +128,8 @@ def health_care_all(response, utteranceValue_year, utteranceValue_month, utteran
 
     print(a)
 
-    response['output']['health_care'] = a
-    response['output']['count'] = str(count)
+    response['output'][str1] = a
+    response['output'][str2] = str(count)
 
 
 
@@ -165,7 +168,25 @@ def health_care_start():
     print(utteranceValue_year)
     print(utteranceValue_gender)
 
-    response = health_care_all(response, utteranceValue_year, utteranceValue_month, utteranceValue_day, utteranceValue_gender)
+    response = health_care_all(response, utteranceValue_year, utteranceValue_month, utteranceValue_day, utteranceValue_gender, 'health_care', 'count_calc')
+
+
+    return json.dumps(response)
+
+@app.route('/health_care_exp', methods=['POST'])
+def health_care_multi_turn():
+    utteranceParameter = getUtteranceParameter()
+    utteranceValue_year = utteranceParameter['takeyear1']['value']
+    utteranceValue_month = utteranceParameter['takemonth1']['value']
+    utteranceValue_day = utteranceParameter['takeday1']['value']
+    utteranceValue_gender = utteranceParameter['takegender1']['value']
+
+    response = commonResponse
+
+    print(utteranceValue_year)
+    print(utteranceValue_gender)
+
+    response = health_care_all(response, utteranceValue_year, utteranceValue_month, utteranceValue_day, utteranceValue_gender, 'health_care1', 'count1')
 
 
     return json.dumps(response)
@@ -173,3 +194,4 @@ def health_care_start():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5500, debug=True)
+
